@@ -61,9 +61,11 @@ class data_clean(object):
         
         
 
-if __name__=='__main__':
-    data=data_clean.clean_operation()
-    
+opt=data_clean()
+data=opt.clean_operation()
+data.to_csv("lagou_clean.csv")
+
+
     
         
         

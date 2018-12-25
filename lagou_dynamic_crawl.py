@@ -38,6 +38,7 @@ def lagou_dynamic_crawl():
         #将请求结果转为json        
         json_result=resut.json()
         #解析json数据结构获取目标信息
+        # print(json_result)
         position_info=json_result['content']['positionResult']['result']
         #获取当前页第一个职位信息，再去抓职位详情页面
         for position in position_info:
@@ -61,7 +62,7 @@ def lagou_dynamic_crawl():
             position_dict['position_detail']=result_detail(position_id)
             positions.append(position_dict)
             
-        time.sleep(7)
+        time.sleep(10)
     print("全部数据采集完毕")
     return positions 
 
@@ -89,7 +90,7 @@ def result_detail(position_id):
     return job_jd
 
 if __name__=='__main__':
-    positions=lagou_dynamic_crawl();
+    positions=lagou_dynamic_crawl()
     df=pd.DataFrame(positions)
     df.head()
     df.to_csv("machine_learning.csv")
